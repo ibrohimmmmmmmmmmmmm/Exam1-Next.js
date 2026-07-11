@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import Image from "next/image";
 import { GithubIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "./Icons";
 
@@ -9,13 +9,13 @@ export default function Hero({ personalInfo, imageMyself }: any) {
   const bgY = useTransform(scrollY, [0, 700], [0, -160]);
   const bubbleY = useTransform(scrollY, [0, 700], [0, 24]);
 
-  const nameContainer = {
+  const nameContainer: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.03 } },
   };
-  const charVariant = {
+  const charVariant: Variants = {
     hidden: { opacity: 0, y: 10, rotateX: -8 },
-    visible: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring", stiffness: 240, damping: 20 } },
+    visible: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring" as const, stiffness: 240, damping: 20 } },
   };
 
   return (

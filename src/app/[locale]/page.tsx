@@ -4,16 +4,17 @@ import { useState, useEffect, useRef, FormEvent, MouseEvent, ReactNode } from "r
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Mail, Phone, MapPin, Award, BookOpen, Code2, GraduationCap, Briefcase, ExternalLink, Menu, X, Plus, Lock, Trash2, Sparkles,
 } from "lucide-react";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import Skills from "../components/Skills";
-import Experience from "../components/Experience";
-import Projects from "../components/Projects";
-import Certificates from "../components/Certificates";
-import Contact from "../components/Contact";
-import SectionComponent from "../components/Section";
-import { GithubIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "../components/Icons";
-
+import Hero from "../../../components/Hero";
+import About from "../../../components/About";
+import Skills from "../../../components/Skills";
+import Experience from "../../../components/Experience";
+import Projects from "../../../components/Projects";
+import Certificates from "../../../components/Certificates";
+import Contact from "../../../components/Contact";
+import SectionComponent from "../../../components/Section";
+import { GithubIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "../../../components/Icons";
+import {useTranslations} from 'next-intl';
+import { use } from "react";
 // small local assets / paths used by Hero and About
 const imageMyself = "/image.png";
 const img2 = "/ibrohimmmm.jpg";
@@ -183,8 +184,14 @@ const SECRET_CODE = "ibrohimjon2009";
 // ============================================
 // MAIN COMPONENT
 // ============================================
-
-export default function Portfolio() {
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+export default function Portfolio({params} : Props) {
+  const { locale } = use(params);
+  const t = useTranslations('HomePage');
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -274,6 +281,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-[#0b1120] text-slate-100 font-sans selection:bg-emerald-500/30">
       {/* BACKGROUND GLOW */}
+      <h1>{t('title')}</h1>;
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] animate-blob" />
         <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000" />

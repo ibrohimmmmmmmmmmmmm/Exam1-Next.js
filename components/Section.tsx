@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface SectionProps {
   id: string;
@@ -9,13 +9,13 @@ interface SectionProps {
 }
 
 export default function Section({ id, title, children }: SectionProps) {
-  const headerContainer = {
+  const headerContainer: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.03 } },
   };
-  const headerChar = {
+  const headerChar: Variants = {
     hidden: { opacity: 0, y: 10, rotateX: -6 },
-    visible: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring", stiffness: 220, damping: 20 } },
+    visible: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring" as const, stiffness: 220, damping: 20 } },
   };
 
   return (
