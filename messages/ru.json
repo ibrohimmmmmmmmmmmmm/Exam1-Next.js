@@ -1,5 +1,123 @@
 {
   "HomePage": {
-    "title": "Hello world!1111"
+    "navigation": {
+      "about": "Обо мне",
+      "skills": "Навыки",
+      "experience": "Опыт",
+      "projects": "Проекты",
+      "certificates": "Сертификаты",
+      "contact": "Контакты"
+    },
+    "hero": {
+      "getInTouch": "Связаться",
+      "viewProjects": "Смотреть проекты",
+      "age": "Возраст"
+    },
+    "sections": {
+      "about": "Обо мне",
+      "experience": "Опыт и образование",
+      "skills": "Навыки",
+      "projects": "Проекты",
+      "certificates": "Сертификаты и достижения",
+      "contact": "Связаться"
+    },
+    "about": {
+      "text": "Я самоучка-фронтенд-разработчик из Душанбе, Таджикистан, сейчас заканчиваю школу и готовлюсь к поступлению в университет на IT/Программирование. Я начал изучать программирование в октябре 2025 года, и примерно за 9–10 месяцев прошёл путь от основ C++ до создания полноценных приложений на React, TypeScript и Next.js — включая их backend-логику. Моя цель — стать сильным fullstack-разработчиком."
+    },
+    "skills": {
+      "categories": {
+        "languages": "Языки",
+        "frameworks": "Фреймворки",
+        "styling": "Стилизация",
+        "tools": "Инструменты",
+        "forms": "Формы",
+        "other": "Другое"
+      }
+    },
+    "experience": {
+      "tutor": {
+        "role": "Репетитор",
+        "place": "GEO_Delta Learning Center",
+        "period": "2025",
+        "description": "Преподавал английский на уровнях от Beginner до Intermediate, при этом сам владел уровнем Upper-Intermediate. Присоединился после волонтёрской работы, когда мой бывший учитель открыл этот центр."
+      },
+      "volunteer": {
+        "role": "Волонтёр",
+        "place": "Intellect Learning Center",
+        "period": "2025",
+        "description": "Сотрудничал в сообществе по изучению английского, помогал студентам и получал начальный опыт преподавания."
+      },
+      "student": {
+        "role": "Студент",
+        "place": "Softclub Academy",
+        "period": "2025 — настоящее время",
+        "description": "Изучаю основы программирования и современную фронтенд-разработку — от баз C++ до полноценных приложений на React/Next.js."
+      }
+    },
+    "projects": {
+      "add": "Добавить проект",
+      "view": "Смотреть проект",
+      "new": "НОВОЕ",
+      "workspace": {
+        "title": "Workspace",
+        "description": "Платформа для управления проектами и задачами (вдохновлённая Plane/Linear) с доступом по ролям — лидеры назначают задачи, исполнители выполняют их и переводят через Kanban-процесс. Есть полноценный backend."
+      },
+      "fastcard": {
+        "title": "FastCard",
+        "description": "Фронтенд интернет-магазина, который был переписан трижды — сначала на JavaScript, затем на JSX, а потом полностью перенесён на TypeScript с улучшением архитектуры и UI."
+      },
+      "powertime": {
+        "title": "PowerTime",
+        "description": "Приложение-калькулятор для радиостанций с акцентом на точные практические расчёты и чистый single-page интерфейс."
+      },
+      "linkedin": {
+        "title": "Клон LinkedIn",
+        "description": "Полноценный клон базового UI и функционала LinkedIn с полной интеграцией backend."
+      },
+      "debt": {
+        "title": "Система управления долгами",
+        "description": "Приложение для отслеживания долгов (DebtFlow) с папками, контактами, долгами и платежами — полностью переработанное под премиальный UI."
+      }
+    },
+    "certificates": {
+      "english": {
+        "category": "Сертификаты по английскому",
+        "beginner": "Beginner",
+        "elementary": "Elementary",
+        "preIntermediate": "Pre-Intermediate",
+        "intermediate": "Intermediate",
+        "upperIntermediate": "Upper-Intermediate",
+        "advanced": "Advanced"
+      },
+      "olympiad": {
+        "category": "Олимпиадные награды",
+        "first": "1 место — школьная олимпиада по английскому",
+        "second": "2 место — районная (нохия) олимпиада по английскому",
+        "third": "3 место — городская олимпиада по английскому"
+      },
+      "programming": {
+        "category": "Программные достижения",
+        "first": "Освоил основы C++",
+        "second": "Освоил HTML/CSS, JavaScript, TypeScript",
+        "third": "Освоил React — сейчас изучаю Next.js"
+      }
+    },
+    "modal": {
+      "title": "Добавить новый проект",
+      "projectTitle": "Название проекта",
+      "projectDescription": "Описание проекта",
+      "techStack": "Технологии (через запятую)",
+      "projectLink": "Ссылка на проект (необязательно)",
+      "imageUrl": "URL изображения (необязательно)",
+      "accessCode": "Код доступа",
+      "submit": "Добавить проект"
+    },
+    "toast": {
+      "invalidCode": "Неверный код доступа. Только владелец может добавлять проекты.",
+      "fillRequired": "Пожалуйста, заполните название и описание.",
+      "projectAdded": "Проект успешно добавлен!",
+      "projectEdited": "Проект успешно изменён!",
+      "projectRemoved": "Проект удалён."
+    }
   }
 }

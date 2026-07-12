@@ -2,9 +2,11 @@
 import React from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { GithubIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "./Icons";
 
 export default function Hero({ personalInfo, imageMyself }: any) {
+  const t = useTranslations("HomePage");
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 700], [0, -160]);
   const bubbleY = useTransform(scrollY, [0, 700], [0, 24]);
@@ -53,12 +55,12 @@ export default function Hero({ personalInfo, imageMyself }: any) {
             {personalInfo.city}, {personalInfo.country}
           </span>
           <span className="opacity-80">•</span>
-          <span className="opacity-90">Age {personalInfo.age}</span>
+          <span className="opacity-90">{t("hero.age")} {personalInfo.age}</span>
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }} className="mt-8 flex justify-center gap-4">
-          <a href="#contact" className="px-6 py-3 rounded-xl bg-emerald-500 text-[#0b1120] font-semibold hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">Get in Touch</a>
-          <a href="#projects" className="px-6 py-3 rounded-xl border border-white/10 hover:border-emerald-400/50 transition-colors duration-300">View Projects</a>
+          <a href="#contact" className="px-6 py-3 rounded-xl bg-emerald-500 text-[#0b1120] font-semibold hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">{t("hero.getInTouch")}</a>
+          <a href="#projects" className="px-6 py-3 rounded-xl border border-white/10 hover:border-emerald-400/50 transition-colors duration-300">{t("hero.viewProjects")}</a>
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.55 }} className="mt-8 flex justify-center gap-6 text-slate-200">

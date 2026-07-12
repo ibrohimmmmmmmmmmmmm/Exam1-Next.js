@@ -5,18 +5,18 @@
 ▲ Next.js 16.2.10 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 30.8s
+✓ Compiled successfully in 30.1s
   Running TypeScript ...
 Failed to type check.
 
-./components/Skills.tsx:14:16
-Type error: 'items' is of type 'unknown'.
+./src/app/[locale]/page.tsx:85:21
+Type error: Cannot find name 'ExperienceItem'.
 
-  [90m12 |[0m             <h3 className=[32m"text-emerald-400 font-semibold mb-3"[0m>{category}</h3>
-  [90m13 |[0m             <div className=[32m"flex flex-wrap gap-2"[0m>
-[31m[1m>[0m [90m14 |[0m               {items.map((skill: any, si: number) => (
-  [90m   |[0m                [31m[1m^[0m
-  [90m15 |[0m                 <motion.span key={skill} initial={{ opacity: [35m0[0m, y: [35m8[0m }} whileInView={{ opa...
-  [90m16 |[0m                   {skill}
-  [90m17 |[0m                 </motion.span>
+  [90m83 |[0m     [t([32m'skills.categories.other'[0m)]: [[32m"Swiper"[0m, [32m"Lucide Icons"[0m, [32m"Sonner"[0m, [32m"i18n (next-intl)"[0m],
+  [90m84 |[0m   };
+[31m[1m>[0m [90m85 |[0m   [36mconst[0m experience: [33mExperienceItem[0m[] = [
+  [90m   |[0m                     [31m[1m^[0m
+  [90m86 |[0m     {
+  [90m87 |[0m       role: t([32m'experience.tutor.role'[0m),
+  [90m88 |[0m       place: t([32m'experience.tutor.place'[0m),
 Next.js build worker exited with code: 1 and signal: null

@@ -1,5 +1,123 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "navigation": {
+      "about": "About",
+      "skills": "Skills",
+      "experience": "Experience",
+      "projects": "Projects",
+      "certificates": "Certificates",
+      "contact": "Contact"
+    },
+    "hero": {
+      "getInTouch": "Get in Touch",
+      "viewProjects": "View Projects",
+      "age": "Age"
+    },
+    "sections": {
+      "about": "About Me",
+      "experience": "Experience & Education",
+      "skills": "Skills",
+      "projects": "Projects",
+      "certificates": "Certificates & Achievements",
+      "contact": "Get In Touch"
+    },
+    "about": {
+      "text": "I'm a self-taught frontend developer from Dushanbe, Tajikistan, currently finishing high school and preparing to study IT/Programming at university. I started learning programming in October 2025, and in about 9–10 months I've gone from the fundamentals of C++ to building full production-style applications with React, TypeScript, and Next.js — including their backend logic. My goal is to become a strong Fullstack Developer."
+    },
+    "skills": {
+      "categories": {
+        "languages": "Languages",
+        "frameworks": "Frameworks",
+        "styling": "Styling",
+        "tools": "Tools",
+        "forms": "Forms",
+        "other": "Other"
+      }
+    },
+    "experience": {
+      "tutor": {
+        "role": "Tutor",
+        "place": "GEO_Delta Learning Center",
+        "period": "2025",
+        "description": "Taught English at Beginner through Intermediate levels while holding an Upper-Intermediate proficiency myself. Joined after volunteering, when my former teacher opened this center."
+      },
+      "volunteer": {
+        "role": "Volunteer",
+        "place": "Intellect Learning Center",
+        "period": "2025",
+        "description": "Volunteered as part of the English learning community, supporting students and gaining early teaching experience."
+      },
+      "student": {
+        "role": "Student",
+        "place": "Softclub Academy",
+        "period": "2025 — Present",
+        "description": "Studying programming fundamentals and modern frontend development, from C++ basics to full React/Next.js applications."
+      }
+    },
+    "projects": {
+      "add": "Add Project",
+      "view": "View Project",
+      "new": "NEW",
+      "workspace": {
+        "title": "Workspace",
+        "description": "A project/task management platform (inspired by Plane/Linear) with role-based access — leaders assign tasks, workers complete them and move them through a Kanban-style workflow. Full backend included."
+      },
+      "fastcard": {
+        "title": "FastCard",
+        "description": "An e-commerce frontend rebuilt across three iterations — JavaScript, then JSX, then fully migrated to TypeScript — refining architecture and UI each time."
+      },
+      "powertime": {
+        "title": "PowerTime",
+        "description": "A calculator application for radio stations, focused on precise, practical calculations behind a clean single-page interface."
+      },
+      "linkedin": {
+        "title": "LinkedIn Clone",
+        "description": "A full-featured clone of LinkedIn's core UI and functionality, built with complete backend integration."
+      },
+      "debt": {
+        "title": "Debt Management System",
+        "description": "A debt-tracking application (DebtFlow) for managing folders, contacts, debts, and payments — redesigned end-to-end for a premium UI."
+      }
+    },
+    "certificates": {
+      "english": {
+        "category": "English Certificates",
+        "beginner": "Beginner",
+        "elementary": "Elementary",
+        "preIntermediate": "Pre-Intermediate",
+        "intermediate": "Intermediate",
+        "upperIntermediate": "Upper-Intermediate",
+        "advanced": "Advanced"
+      },
+      "olympiad": {
+        "category": "Olympiad Awards",
+        "first": "1st Place — School English Olympiad",
+        "second": "2nd Place — District (Nohiya) English Olympiad",
+        "third": "3rd Place — City English Olympiad"
+      },
+      "programming": {
+        "category": "Programming Achievements",
+        "first": "Completed C++ fundamentals",
+        "second": "Completed HTML/CSS, JavaScript, TypeScript",
+        "third": "Completed React — currently mastering Next.js"
+      }
+    },
+    "modal": {
+      "title": "Add New Project",
+      "projectTitle": "Project title",
+      "projectDescription": "Project description",
+      "techStack": "Tech stack (comma separated)",
+      "projectLink": "Project link (optional)",
+      "imageUrl": "Image URL (optional)",
+      "accessCode": "Access code",
+      "submit": "Add Project"
+    },
+    "toast": {
+      "invalidCode": "Invalid access code. Only the owner can add projects.",
+      "fillRequired": "Please fill in the title and description.",
+      "projectAdded": "Project added successfully!",
+      "projectEdited": "Project edited successfully!",
+      "projectRemoved": "Project removed."
+    }
   }
 }

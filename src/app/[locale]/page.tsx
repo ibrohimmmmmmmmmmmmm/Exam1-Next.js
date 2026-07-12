@@ -13,8 +13,9 @@ import Certificates from "../../../components/Certificates";
 import Contact from "../../../components/Contact";
 import SectionComponent from "../../../components/Section";
 import { GithubIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "../../../components/Icons";
-import {useTranslations} from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { use } from "react";
+import { usePathname, useRouter } from "@/src/i18n/navigation";
 // small local assets / paths used by Hero and About
 const imageMyself = "/image.png";
 const img2 = "/ibrohimmmm.jpg";
@@ -29,153 +30,22 @@ const PERSONAL_INFO = {
   city: "Dushanbe",
   country: "Tajikistan",
   age: 17,
-  email: "youremail@example.com",
-  phone: "+1234567890",
-  github: "https://github.com/yourhandle",
+  email: "mukhtorovibrohim@gmail.com",
+  phone: "+992944337373",
+  github: "https://github.com/ibrohimmmmmmmmmmmmm",
   linkedin: "https://linkedin.com/in/yourhandle",
-  instagram: "https://instagram.com/yourhandle",
+  instagram: "https://instagram.com/m.ibrohim_o1",
   telegram: "https://t.me/yourhandle",
 };
 const ABOUT_TEXT =
   "I'm a self-taught frontend developer from Dushanbe, Tajikistan, currently finishing high school and preparing to study IT/Programming at university. I started learning programming in October 2025, and in about 9–10 months I've gone from the fundamentals of C++ to building full production-style applications with React, TypeScript, and Next.js — including their backend logic. My goal is to become a strong Fullstack Developer.";
 
-const SKILLS: Record<string, string[]> = {
-  Languages: ["C++", "JavaScript", "TypeScript", "HTML", "CSS"],
-  Frameworks: ["React", "Next.js", "Redux", "Zustand", "Jotai"],
-  Styling: ["Tailwind CSS", "Chakra UI", "MUI", "shadcn/ui", "Framer Motion"],
-  Tools: ["Git", "GitHub", "Figma", "Swagger", "Axios"],
-  Forms: ["Formik", "React Hook Form", "Yup"],
-  Other: ["Swiper", "Lucide Icons", "Sonner", "i18n (next-intl)"],
-};
-
-const EXPERIENCE: ExperienceItem[] = [
-  {
-    role: "Tutor",
-    place: "GEO_Delta Learning Center",
-    period: "2025",
-    description:
-      "Taught English at Beginner through Intermediate levels while holding an Upper-Intermediate proficiency myself. Joined after volunteering, when my former teacher opened this center.",
-    icon: "briefcase",
-  },
-  {
-    role: "Volunteer",
-    place: "Intellect Learning Center",
-    period: "2025",
-    description:
-      "Volunteered as part of the English learning community, supporting students and gaining early teaching experience.",
-    icon: "briefcase",
-  },
-  {
-    role: "Student",
-    place: "Softclub Academy",
-    period: "2025 — Present",
-    description:
-      "Studying programming fundamentals and modern frontend development, from C++ basics to full React/Next.js applications.",
-    icon: "graduation",
-  },
-];
-
-const DEFAULT_PROJECTS: Project[] = [
-  {
-    id: "p1",
-    title: "Workspace",
-    description:
-      "A project/task management platform (inspired by Plane/Linear) with role-based access — leaders assign tasks, workers complete them and move them through a Kanban-style workflow. Full backend included.",
-    stack: ["React", "TypeScript", "Tailwind", "Zustand"],
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
-    link: "#",
-    isCustom: false,
-  },
-  {
-    id: "p2",
-    title: "FastCard",
-    description:
-      "An e-commerce frontend rebuilt across three iterations — JavaScript, then JSX, then fully migrated to TypeScript — refining architecture and UI each time.",
-    stack: ["React", "TypeScript", "Tailwind"],
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-    link: "#",
-    isCustom: false,
-  },
-  {
-    id: "p3",
-    title: "PowerTime",
-    description:
-      "A calculator application for radio stations, focused on precise, practical calculations behind a clean single-page interface.",
-    stack: ["React", "TypeScript", "Vite"],
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-    link: "#",
-    isCustom: false,
-  },
-  {
-    id: "p4",
-    title: "LinkedIn Clone",
-    description:
-      "A full-featured clone of LinkedIn's core UI and functionality, built with complete backend integration.",
-    stack: ["React", "TypeScript", "Backend"],
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
-    link: "#",
-    isCustom: false,
-  },
-  {
-    id: "p5",
-    title: "Debt Management System",
-    description:
-      "A debt-tracking application (DebtFlow) for managing folders, contacts, debts, and payments — redesigned end-to-end for a premium UI.",
-    stack: ["React", "TypeScript", "Zustand", "React Hook Form"],
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-    link: "#",
-    isCustom: false,
-  },
-];
-
-const CERTIFICATES: CertificateGroup[] = [
-  {
-    category: "English Certificates",
-    icon: "book",
-    items: [
-      "Beginner",
-      "Elementary",
-      "Pre-Intermediate",
-      "Intermediate",
-      "Upper-Intermediate",
-      "Advanced",
-    ],
-  },
-  {
-    category: "Olympiad Awards",
-    icon: "award",
-    items: [
-      "1st Place — School English Olympiad",
-      "2nd Place — District (Nohiya) English Olympiad",
-      "3rd Place — City English Olympiad",
-    ],
-  },
-  {
-    category: "Programming Achievements",
-    icon: "code",
-    items: [
-      "Completed C++ fundamentals",
-      "Completed HTML/CSS, JavaScript, TypeScript",
-      "Completed React — currently mastering Next.js",
-    ],
-  },
-];
-
-const NAV_LINKS: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Certificates", href: "#certificates" },
-  { label: "Contact", href: "#contact" },
-];
-
 const SECRET_CODE = "ibrohimjon2009";
+
+type NavLink = {
+  label: string;
+  href: string;
+};
 
 // TiltCard moved to components/TiltCard.tsx
 
@@ -192,10 +62,134 @@ type Props = {
 export default function Portfolio({params} : Props) {
   const { locale } = use(params);
   const t = useTranslations('HomePage');
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
+  const navLinks: NavLink[] = [
+    { label: t('navigation.about'), href: '#about' },
+    { label: t('navigation.skills'), href: '#skills' },
+    { label: t('navigation.experience'), href: '#experience' },
+    { label: t('navigation.projects'), href: '#projects' },
+    { label: t('navigation.certificates'), href: '#certificates' },
+    { label: t('navigation.contact'), href: '#contact' },
+  ];
+  const aboutText = t('about.text');
+  const skills: Record<string, string[]> = {
+    [t('skills.categories.languages')]: ["C++", "JavaScript", "TypeScript", "HTML", "CSS"],
+    [t('skills.categories.frameworks')]: ["React", "Next.js", "Redux", "Zustand", "Jotai"],
+    [t('skills.categories.styling')]: ["Tailwind CSS", "Chakra UI", "MUI", "shadcn/ui", "Framer Motion"],
+    [t('skills.categories.tools')]: ["Git", "GitHub", "Figma", "Swagger", "Axios"],
+    [t('skills.categories.forms')]: ["Formik", "React Hook Form", "Yup"],
+    [t('skills.categories.other')]: ["Swiper", "Lucide Icons", "Sonner", "i18n (next-intl)"],
+  };
+  const experience: ExperienceItem[] = [
+    {
+      role: t('experience.tutor.role'),
+      place: t('experience.tutor.place'),
+      period: t('experience.tutor.period'),
+      description: t('experience.tutor.description'),
+      icon: 'briefcase',
+    },
+    {
+      role: t('experience.volunteer.role'),
+      place: t('experience.volunteer.place'),
+      period: t('experience.volunteer.period'),
+      description: t('experience.volunteer.description'),
+      icon: 'briefcase',
+    },
+    {
+      role: t('experience.student.role'),
+      place: t('experience.student.place'),
+      period: t('experience.student.period'),
+      description: t('experience.student.description'),
+      icon: 'graduation',
+    },
+  ];
+  const defaultProjects: Project[] = [
+    {
+      id: 'p1',
+      title: t('projects.workspace.title'),
+      description: t('projects.workspace.description'),
+      stack: ['React', 'TypeScript', 'Tailwind', 'Zustand'],
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
+      link: '#',
+      isCustom: false,
+    },
+    {
+      id: 'p2',
+      title: t('projects.fastcard.title'),
+      description: t('projects.fastcard.description'),
+      stack: ['React', 'TypeScript', 'Tailwind'],
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+      link: '#',
+      isCustom: false,
+    },
+    {
+      id: 'p3',
+      title: t('projects.powertime.title'),
+      description: t('projects.powertime.description'),
+      stack: ['React', 'TypeScript', 'Vite'],
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+      link: '#',
+      isCustom: false,
+    },
+    {
+      id: 'p4',
+      title: t('projects.linkedin.title'),
+      description: t('projects.linkedin.description'),
+      stack: ['React', 'TypeScript', 'Backend'],
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+      link: '#',
+      isCustom: false,
+    },
+    {
+      id: 'p5',
+      title: t('projects.debt.title'),
+      description: t('projects.debt.description'),
+      stack: ['React', 'TypeScript', 'Zustand', 'React Hook Form'],
+      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+      link: '#',
+      isCustom: false,
+    },
+  ];
+  const certificates: CertificateGroup[] = [
+    {
+      category: t('certificates.english.category'),
+      icon: 'book',
+      items: [
+        t('certificates.english.beginner'),
+        t('certificates.english.elementary'),
+        t('certificates.english.preIntermediate'),
+        t('certificates.english.intermediate'),
+        t('certificates.english.upperIntermediate'),
+        t('certificates.english.advanced'),
+      ],
+    },
+    {
+      category: t('certificates.olympiad.category'),
+      icon: 'award',
+      items: [
+        t('certificates.olympiad.first'),
+        t('certificates.olympiad.second'),
+        t('certificates.olympiad.third'),
+      ],
+    },
+    {
+      category: t('certificates.programming.category'),
+      icon: 'code',
+      items: [
+        t('certificates.programming.first'),
+        t('certificates.programming.second'),
+        t('certificates.programming.third'),
+      ],
+    },
+  ];
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS);
+  const [projects, setProjects] = useState<Project[]>(defaultProjects);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [toast, setToast] = useState<ToastState | null>(null);
+  const [actionMode, setActionMode] = useState<'add' | 'edit' | 'delete' | null>(null);
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
 
   const [form, setForm] = useState<ProjectForm>({
     title: "",
@@ -212,47 +206,98 @@ export default function Portfolio({params} : Props) {
     return () => clearTimeout(timer);
   }, [toast]);
 
-  const handleAddProject = (e: FormEvent<HTMLFormElement>) => {
+  const resetProjectModal = () => {
+    setActionMode(null);
+    setActiveProjectId(null);
+    setForm({ title: "", description: "", link: "", stack: "", image: "", code: "" });
+    setModalOpen(false);
+  };
+
+  const openAddModal = () => {
+    setActionMode('add');
+    setActiveProjectId(null);
+    setForm({ title: "", description: "", link: "", stack: "", image: "", code: "" });
+    setModalOpen(true);
+  };
+
+  const openEditModal = (project: Project) => {
+    setActionMode('edit');
+    setActiveProjectId(project.id);
+    setForm({
+      title: project.title,
+      description: project.description,
+      link: project.link,
+      stack: project.stack.join(", "),
+      image: project.image,
+      code: "",
+    });
+    setModalOpen(true);
+  };
+
+  const openDeleteModal = (project: Project) => {
+    setActionMode('delete');
+    setActiveProjectId(project.id);
+    setForm({
+      title: project.title,
+      description: project.description,
+      link: project.link,
+      stack: project.stack.join(", "),
+      image: project.image,
+      code: "",
+    });
+    setModalOpen(true);
+  };
+
+  const handleProjectSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (form.code !== SECRET_CODE) {
-      setToast({
-        type: "error",
-        message: "Invalid access code. Only the owner can add projects.",
-      });
+      setToast({ type: "error", message: t('toast.invalidCode') });
       return;
     }
+
+    if (actionMode === 'delete' && activeProjectId) {
+      setProjects((prev) => prev.filter((project) => project.id !== activeProjectId));
+      setToast({ type: "success", message: t('toast.projectRemoved') });
+      resetProjectModal();
+      return;
+    }
+
     if (!form.title || !form.description) {
-      setToast({
-        type: "error",
-        message: "Please fill in the title and description.",
-      });
+      setToast({ type: "error", message: t('toast.fillRequired') });
       return;
     }
 
-    const newProject: Project = {
-      id: `custom-${Date.now()}`,
-      title: form.title,
-      description: form.description,
-      stack: form.stack
-        ? form.stack.split(",").map((s) => s.trim()).filter(Boolean)
-        : [],
-      image:
-        form.image ||
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
-      link: form.link || "#",
-      isCustom: true,
-    };
+    if (actionMode === 'edit' && activeProjectId) {
+      setProjects((prev) => prev.map((project) => project.id === activeProjectId ? {
+        ...project,
+        title: form.title,
+        description: form.description,
+        stack: form.stack ? form.stack.split(",").map((s) => s.trim()).filter(Boolean) : [],
+        image: form.image || project.image,
+        link: form.link || project.link,
+        isCustom: project.isCustom,
+      } : project));
+      setToast({ type: "success", message: t('toast.projectEdited') });
+    } else {
+      const newProject: Project = {
+        id: `custom-${Date.now()}`,
+        title: form.title,
+        description: form.description,
+        stack: form.stack ? form.stack.split(",").map((s) => s.trim()).filter(Boolean) : [],
+        image: form.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
+        link: form.link || "#",
+        isCustom: true,
+      };
+      setProjects((prev) => [newProject, ...prev]);
+      setToast({ type: "success", message: t('toast.projectAdded') });
+    }
 
-    setProjects((prev) => [newProject, ...prev]);
-    setForm({ title: "", description: "", link: "", stack: "", image: "", code: "" });
-    setModalOpen(false);
-    setToast({ type: "success", message: "Project added successfully!" });
+    resetProjectModal();
   };
 
-  const handleDeleteProject = (id: string) => {
-    setProjects((prev) => prev.filter((p) => p.id !== id));
-    setToast({ type: "success", message: "Project removed." });
+  const handleDeleteProject = (project: Project) => {
+    openDeleteModal(project);
   };
 
   const contactLinks = [
@@ -281,7 +326,6 @@ export default function Portfolio({params} : Props) {
   return (
     <div className="min-h-screen bg-[#0b1120] text-slate-100 font-sans selection:bg-emerald-500/30">
       {/* BACKGROUND GLOW */}
-      <h1>{t('title')}</h1>;
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] animate-blob" />
         <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000" />
@@ -314,7 +358,7 @@ export default function Portfolio({params} : Props) {
           </span>
 
           <nav className="hidden md:flex gap-8 text-sm">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -325,13 +369,26 @@ export default function Portfolio({params} : Props) {
             ))}
           </nav>
 
-          <button
-            type="button"
-            className="md:hidden text-slate-300"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <select
+                value={currentLocale}
+                onChange={(event) => router.replace(pathname, { locale: event.target.value })}
+                className="appearance-none rounded-full border border-white/10 bg-white/5 px-3 py-2 pr-8 text-sm text-slate-200 shadow-sm outline-none transition hover:border-emerald-400/50 focus:border-emerald-400"
+              >
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+              </select>
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">⌄</span>
+            </div>
+            <button
+              type="button"
+              className="md:hidden text-slate-300"
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -343,7 +400,7 @@ export default function Portfolio({params} : Props) {
               className="md:hidden overflow-hidden border-t border-white/5"
             >
               <div className="flex flex-col px-6 py-4 gap-4">
-                {NAV_LINKS.map((link) => (
+                {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
@@ -361,19 +418,19 @@ export default function Portfolio({params} : Props) {
 
       <Hero personalInfo={PERSONAL_INFO} imageMyself={imageMyself} />
 
-      <SectionComponent id="about" title="About Me">
-        <About aboutText={ABOUT_TEXT} img2={img2} />
+      <SectionComponent id="about" title={t('sections.about')}>
+        <About aboutText={aboutText} img2={img2} />
       </SectionComponent>
-      <SectionComponent id="experience" title="Experience & Education">
-        <Experience experience={EXPERIENCE} />
-      </SectionComponent>
-
-      <SectionComponent id="skills" title="Skills">
-        <Skills skills={SKILLS} />
+      <SectionComponent id="experience" title={t('sections.experience')}>
+        <Experience experience={experience} />
       </SectionComponent>
 
-      <SectionComponent id="projects" title="Projects">
-        <Projects projects={projects} onDelete={handleDeleteProject} openModal={setModalOpen} />
+      <SectionComponent id="skills" title={t('sections.skills')}>
+        <Skills skills={skills} />
+      </SectionComponent>
+
+      <SectionComponent id="projects" title={t('sections.projects')}>
+        <Projects projects={projects} onDelete={handleDeleteProject} openModal={openAddModal} onEdit={openEditModal} />
       </SectionComponent>
 
       {/* ADD PROJECT MODAL */}
@@ -383,8 +440,8 @@ export default function Portfolio({params} : Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-            onClick={() => setModalOpen(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md"
+            onClick={resetProjectModal}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -392,63 +449,74 @@ export default function Portfolio({params} : Props) {
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-md bg-[#111a2e] border border-white/10 rounded-2xl p-6 shadow-2xl"
+              className="w-full max-w-md border border-white/10 rounded-3xl bg-[#0f172a]/95 p-6 shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
             >
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <Sparkles size={18} className="text-emerald-400" /> Add New Project
+                  <Sparkles size={18} className="text-emerald-400" /> {actionMode === 'delete' ? 'Delete Project' : actionMode === 'edit' ? 'Edit Project' : t('modal.title')}
                 </h3>
                 <button
                   type="button"
-                  onClick={() => setModalOpen(false)}
-                  className="text-slate-500 hover:text-white"
+                  onClick={resetProjectModal}
+                  className="rounded-full p-2 text-slate-500 transition hover:bg-white/10 hover:text-white"
                 >
                   <X size={20} />
                 </button>
               </div>
 
-              <form onSubmit={handleAddProject} className="flex flex-col gap-3">
-                <input
-                  type="text"
-                  placeholder="Project title"
-                  value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
-                />
-                <textarea
-                  placeholder="Project description"
-                  value={form.description}
-                  onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  rows={3}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors resize-none"
-                />
-                <input
-                  type="text"
-                  placeholder="Tech stack (comma separated)"
-                  value={form.stack}
-                  onChange={(e) => setForm({ ...form, stack: e.target.value })}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
-                />
-                <input
-                  type="text"
-                  placeholder="Project link (optional)"
-                  value={form.link}
-                  onChange={(e) => setForm({ ...form, link: e.target.value })}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
-                />
-                <input
-                  type="text"
-                  placeholder="Image URL (optional)"
-                  value={form.image}
-                  onChange={(e) => setForm({ ...form, image: e.target.value })}
-                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
-                />
+              <form onSubmit={handleProjectSubmit} className="flex flex-col gap-3">
+                {actionMode !== 'delete' && (
+                  <>
+                    <input
+                      type="text"
+                      placeholder={t('modal.projectTitle')}
+                      value={form.title}
+                      onChange={(e) => setForm({ ...form, title: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
+                    />
+                    <textarea
+                      placeholder={t('modal.projectDescription')}
+                      value={form.description}
+                      onChange={(e) => setForm({ ...form, description: e.target.value })}
+                      rows={3}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors resize-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder={t('modal.techStack')}
+                      value={form.stack}
+                      onChange={(e) => setForm({ ...form, stack: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      placeholder={t('modal.projectLink')}
+                      value={form.link}
+                      onChange={(e) => setForm({ ...form, link: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
+                    />
+                    <input
+                      type="text"
+                      placeholder={t('modal.imageUrl')}
+                      value={form.image}
+                      onChange={(e) => setForm({ ...form, image: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
+                    />
+                  </>
+                )}
+
+                {actionMode === 'delete' && (
+                  <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
+                    <p className="font-medium">This action will permanently remove the selected project.</p>
+                    <p className="mt-1 text-red-100/80">Enter the owner code to confirm.</p>
+                  </div>
+                )}
 
                 <div className="relative mt-2">
                   <Lock size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
                     type="password"
-                    placeholder="Access code"
+                    placeholder={t('modal.accessCode')}
                     value={form.code}
                     onChange={(e) => setForm({ ...form, code: e.target.value })}
                     className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:border-emerald-400/50 transition-colors"
@@ -457,9 +525,9 @@ export default function Portfolio({params} : Props) {
 
                 <button
                   type="submit"
-                  className="mt-2 bg-emerald-500 text-[#0b1120] font-semibold rounded-xl py-2.5 hover:scale-[1.02] transition-transform duration-300"
+                  className="mt-2 rounded-xl bg-emerald-500 py-2.5 font-semibold text-[#0b1120] transition-transform duration-300 hover:scale-[1.02]"
                 >
-                  Add Project
+                  {actionMode === 'delete' ? 'Delete Project' : actionMode === 'edit' ? 'Save Changes' : t('modal.submit')}
                 </button>
               </form>
             </motion.div>
@@ -467,11 +535,11 @@ export default function Portfolio({params} : Props) {
         )}
       </AnimatePresence>
 
-      <SectionComponent id="certificates" title="Certificates & Achievements">
-        <Certificates certificates={CERTIFICATES} />
+      <SectionComponent id="certificates" title={t('sections.certificates')}>
+        <Certificates certificates={certificates} />
       </SectionComponent>
 
-      <SectionComponent id="contact" title="Get In Touch">
+      <SectionComponent id="contact" title={t('sections.contact')}>
         <Contact contactLinks={contactLinks} />
       </SectionComponent>
 
